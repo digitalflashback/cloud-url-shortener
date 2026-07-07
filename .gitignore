@@ -1,0 +1,15 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Docker
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment secrets
+.env
