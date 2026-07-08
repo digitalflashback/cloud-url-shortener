@@ -44,3 +44,14 @@ jobs:
         run: |
           docker push \
             cloudurlshortacr.azurecr.io/url-shortener-frontend:${{ github.sha }}
+
+      - name: Azure Kubernetes Service login
+        uses: azure/aks-set-context@v4
+        with:
+          creds: ${{ secrets.AZURE_AKS_CREDENTIALS }}
+          cluster-name: cloud-url-shortener-aks
+          resource-group: cloud-url-shortener-dev-rg
+
+      - name: Deploy to AKS
+        run: |
+          kubectl apply -f kubernetes/
