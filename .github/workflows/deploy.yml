@@ -33,3 +33,14 @@ jobs:
         run: |
           docker push \
             cloudurlshortacr.azurecr.io/url-shortener-api:${{ github.sha }}
+
+      - name: Build frontend image
+        run: |
+          docker build \
+            -t cloudurlshortacr.azurecr.io/url-shortener-frontend:${{ github.sha }} \
+            ./frontend
+
+      - name: Push frontend image
+        run: |
+          docker push \
+            cloudurlshortacr.azurecr.io/url-shortener-frontend:${{ github.sha }}
