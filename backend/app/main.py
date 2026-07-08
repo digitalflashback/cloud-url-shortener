@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
 import random
 import string
 
@@ -13,6 +14,18 @@ import crud
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://20.223.15.88"
+
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def get_db():
