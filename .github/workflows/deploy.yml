@@ -7,14 +7,29 @@ on:
 
 jobs:
   build:
-    name: Build application
+    name: Build and Push Docker Images
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Check repository
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to Azure Container Registry
         run: |
-          ls
-          echo "Repository checked out successfully"
+          az acr login --name cloudurlshortacr
+
+      - name: Build backend image
+        run: |
+          docker build \
+            -t cloudurlshortacr.azurecr.io/url-shortener-api:${{ github.sha }} \
+            ./backend
+
+      - name: Push backend image
+        run: |
+          docker push \
+            cloudurlshortacr.azurecr.io/url-shortener-api:${{ github.sha }}
