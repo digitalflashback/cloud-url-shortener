@@ -48,9 +48,10 @@ jobs:
       - name: Azure Kubernetes Service login
         uses: azure/aks-set-context@v4
         with:
-          creds: ${{ secrets.AZURE_AKS_CREDENTIALS }}
           cluster-name: cloud-url-shortener-aks
           resource-group: cloud-url-shortener-dev-rg
+          subscription: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          use-kubelogin: true
 
       - name: Deploy to AKS
         run: |
