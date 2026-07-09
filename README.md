@@ -1,231 +1,133 @@
-Cloud URL Shortener ☁️
+# Cloud URL Shortener
 
-A cloud-native URL shortening platform built to demonstrate modern DevOps and Cloud Engineering practices.
+A cloud-native URL shortening application built to demonstrate modern DevOps and Cloud Engineering practices.
 
-The project includes a containerized frontend and backend application deployed on Microsoft Azure Kubernetes Service (AKS) with automated CI/CD, Infrastructure as Code, and cloud-native deployment workflows.
+The application is deployed on Microsoft Azure using Docker containers, Azure Kubernetes Service, Terraform and GitHub Actions CI/CD.
 
-Architecture Overview
+## Project Overview
 
-                 User
-                  |
-                  |
-            Azure Load Balancer
-                  |
-                  |
-              Kubernetes
-                  |
-        +---------+---------+
-        |                   |
-        |                   |
-   Frontend Pod        Backend Pod
-   React + Nginx       API Service
-        |                   |
-        |                   |
-        +---------+---------+
-                  |
-             PostgreSQL
+This project demonstrates the complete lifecycle of a cloud application:
 
-Technology Stack
-Application
-Frontend
-React
-Vite
-Nginx
-Docker
-Backend
-API service
-Docker
-REST API architecture
-Database
-PostgreSQL (planned integration)
-Cloud Infrastructure
-Microsoft Azure
+- Application development
+- Containerization with Docker
+- Infrastructure provisioning with Terraform
+- Container image management with Azure Container Registry
+- Kubernetes deployment on Azure Kubernetes Service
+- Automated deployment using GitHub Actions
 
-The application is deployed on Azure Kubernetes Service (AKS).
+## Architecture
 
-Infrastructure components:
+The application consists of:
 
-Azure Kubernetes Service (AKS)
-Azure Container Registry (ACR)
-Azure Resource Groups
-Azure Networking
-Azure Container Instances (development/testing)
+Frontend:
+- React application
+- Vite build system
+- Docker container running on Kubernetes
 
-Infrastructure is managed using Terraform.
+Backend:
+- REST API service
+- Docker container running on Kubernetes
 
-Kubernetes Deployment
+Infrastructure:
+- Microsoft Azure
+- Azure Kubernetes Service (AKS)
+- Azure Container Registry (ACR)
+- Terraform managed infrastructure
 
-The application runs inside Kubernetes with:
+Database:
+- PostgreSQL integration planned
 
-Deployments
-Services
-Rolling updates
-Replica management
-Container health management
+## CI/CD Pipeline
 
-Example deployment flow:
+The deployment process is fully automated.
 
-New Docker Image
-        |
-        |
-Azure Container Registry
-        |
-        |
-kubectl set image
-        |
-        |
-Kubernetes Rolling Update
-        |
-        |
-New Application Version
-CI/CD Pipeline
+When code is pushed to the main branch:
 
-Automated deployment is implemented using GitHub Actions.
+1. GitHub Actions starts the workflow.
+2. Docker images are built.
+3. Images are pushed to Azure Container Registry.
+4. Kubernetes deployment is updated.
+5. Kubernetes performs a rolling update.
+6. Deployment status is verified.
 
-Pipeline workflow:
+Docker images use Git commit SHA tags to provide traceable and reproducible deployments.
 
-Git Push
-   |
-   |
-GitHub Actions
-   |
-   |
-Docker Build
-   |
-   |
-Push Image to ACR
-   |
-   |
-Authenticate with Azure
-   |
-   |
-Deploy to AKS
-   |
-   |
-Verify Kubernetes Rollout
+## Infrastructure as Code
 
-Features:
+Azure resources are managed using Terraform.
 
-Automated Docker image builds
-Container Registry integration
-Kubernetes deployment
-Rolling deployment verification
-Immutable image tags using Git commit SHA
-Infrastructure as Code
+The goal is to have a fully reproducible cloud environment that can be created and maintained through code.
 
-Terraform is used to provision Azure resources.
+Current Terraform-managed resources:
 
-Example:
+- Resource Group
+- Azure Kubernetes Service
+- Azure Container Registry
+- Azure networking components
 
-terraform/
- |
- └── azure/
-      |
-      ├── providers.tf
-      ├── main.tf
-      ├── variables.tf
-      └── outputs.tf
+## Kubernetes Deployment
 
-Infrastructure can be recreated using:
+The application runs on Kubernetes using:
 
-terraform init
+- Deployments
+- Services
+- Replica management
+- Rolling updates
+- Container health checks
 
-terraform plan
+The deployment process supports:
 
-terraform apply
-Security
+- Automated updates
+- Version tracking
+- Rollbacks
+
+## Security
 
 Implemented security practices:
 
-Azure RBAC
-Service Principal authentication
-GitHub Actions secrets
-Container Registry access control
-Kubernetes authentication using Azure AD
+- Azure RBAC
+- GitHub Actions secrets
+- Azure authentication
+- Container Registry access control
 
 Planned improvements:
 
-Azure Key Vault integration
-Managed Identity
-Kubernetes Secrets management
-Network security policies
+- Azure Key Vault
+- Managed Identity
+- Kubernetes Secrets
+- Network security policies
 
-Deployment
+## DevOps Skills Demonstrated
 
-Build locally
+This project demonstrates experience with:
 
-Frontend:
+- Microsoft Azure
+- Kubernetes administration
+- Docker containerization
+- GitHub Actions CI/CD
+- Terraform Infrastructure as Code
+- Cloud deployment workflows
+- Azure identity and access management
 
-cd frontend
+## Roadmap
 
-npm install
+Application improvements:
 
-npm run build
+- URL creation API
+- Short code generation
+- Redirect service
+- PostgreSQL persistence
+- Click analytics
 
-Backend:
+Cloud improvements:
 
-cd backend
+- HTTPS ingress
+- Custom domain
+- Monitoring and alerting
+- Prometheus and Grafana
+- Automated testing pipeline
+- Production approval workflow
 
-docker build -t url-shortener-api .
+## Project Goal
 
-Kubernetes Commands
-
-Check deployments:
-
-kubectl get deployments
-
-Check pods:
-
-kubectl get pods
-
-Check services:
-
-kubectl get services
-
-Check rollout:
-
-kubectl rollout status deployment/url-shortener-api
-
-Rollback:
-
-kubectl rollout undo deployment/url-shortener-api
-
-Current Features
-
-✅ Containerized frontend
-✅ Containerized backend
-✅ Azure Container Registry
-✅ Azure Kubernetes Service deployment
-✅ GitHub Actions CI/CD
-✅ Automated Docker builds
-✅ Kubernetes rolling deployments
-✅ Infrastructure managed with Terraform
-
-Roadmap
-Application
-URL creation API
-Short code generation
-Redirect endpoint
-PostgreSQL integration
-Click analytics
-Cloud / DevOps
-Azure Key Vault
-Managed Identity
-Kubernetes Secrets
-Ingress Controller
-HTTPS/TLS
-Monitoring and alerting
-Prometheus + Grafana
-Automated testing pipeline
-Project Goal
-
-This project was created as a practical Cloud Engineering portfolio project to demonstrate:
-
-Cloud infrastructure design
-Kubernetes operations
-CI/CD automation
-Infrastructure as Code
-Container orchestration
-Azure platform engineering
-
-The goal is to build and operate a production-style cloud-native application following modern DevOps principles.
+The goal of this project is to build and operate a production-style cloud-native application while demonstrating practical Cloud Engineering and DevOps capabilities.
