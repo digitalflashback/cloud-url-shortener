@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: cloudurlshortacr.azurecr.io/url-shortener-frontend:v2
+        image: cloudurlshortacr.azurecr.io/url-shortener-frontend:placeholder
         ports:
         - containerPort: 80
 
