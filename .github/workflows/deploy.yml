@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -22,11 +25,11 @@ jobs:
       - name: Login to Azure Container Registry
         run: |
           az acr login --name cloudurlshortacr
-          
+
       - name: Install kubelogin
         uses: azure/use-kubelogin@v1
         with:
-          kubelogin-version: latest
+          kubelogin-version: v0.2.19
 
       - name: Build backend image
         run: |
