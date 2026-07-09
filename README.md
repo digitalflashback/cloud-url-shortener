@@ -97,9 +97,9 @@ Planned improvements:
 - Kubernetes Secrets
 - Network security policies
 
-## DevOps Skills Demonstrated
+## Technologies and Practices
 
-This project demonstrates experience with:
+This project uses:
 
 - Microsoft Azure
 - Kubernetes administration
@@ -109,25 +109,3 @@ This project demonstrates experience with:
 - Cloud deployment workflows
 - Azure identity and access management
 
-## Roadmap
-
-Application improvements:
-
-- URL creation API
-- Short code generation
-- Redirect service
-- PostgreSQL persistence
-- Click analytics
-
-Cloud improvements:
-
-- HTTPS ingress
-- Custom domain
-- Monitoring and alerting
-- Prometheus and Grafana
-- Automated testing pipeline
-- Production approval workflow
-
-## Project Goal
-
-The goal of this project is to build and operate a production-style cloud-native application while demonstrating practical Cloud Engineering and DevOps capabilities.
