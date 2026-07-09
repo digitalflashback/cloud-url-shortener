@@ -22,6 +22,11 @@ jobs:
       - name: Login to Azure Container Registry
         run: |
           az acr login --name cloudurlshortacr
+          
+      - name: Install kubelogin
+        uses: azure/use-kubelogin@v1
+        with:
+          kubelogin-version: latest
 
       - name: Build backend image
         run: |
